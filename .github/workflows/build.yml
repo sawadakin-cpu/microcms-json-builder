@@ -1,1 +1,29 @@
-name: Build JSONon:   repository_dispatch:     types: [microcms-update]   workflow_dispatch: jobs:   build:     runs-on: ubuntu-latest    steps:       - uses: actions/checkout@v4        with:           token: ${{ secrets.GH_TOKEN }}       - name: Fetch microCMS data        run: |          mkdir -p public          curl -H "X-MICROCMS-API-KEY: ${{ secrets.MICROCMS_API_KEY }}" \            "https://kga41vfoj4.microcms.io/api/v1/pickup?limit=100" \            -o public/pickup.json       - name: Commit and push        run: |          git config user.name "github-actions"          git config user.email "actions@github.com"          git add public/pickup.json          git diff --staged --quiet || git commit -m "Update JSON"          git push
+name: Build JSON
+ 
+on:
+  repository_dispatch:
+    types: [microcms-update]
+  workflow_dispatch:
+ 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+ 
+      - name: Fetch microCMS data
+        run: |
+          mkdir -p public
+          curl -H "X-MICROCMS-API-KEY: ${{ secrets.MICROCMS_API_KEY }}" \
+            "https://kga41vfoj4.microcms.io/api/v1/pickup?limit=100" \
+            -o public/pickup.json
+ 
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add public/pickup.json
+          git diff --staged --quiet || git commit -m "Update JSON"
+          git push
