@@ -1,1 +1,17 @@
-{   "headers": [     {       "source": "/pickup.json",       "headers": [         {           "key": "Access-Control-Allow-Origin",           "value": "*"         },         {           "key": "Cache-Control",           "value": "no-cache"         }       ]     }   ] }
+{
+  "headers": [
+    {
+      "source": "/pickup.json",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
+        }
+      ]
+    }
+  ]
+}
