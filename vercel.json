@@ -1,7 +1,7 @@
 {
   "headers": [
     {
-      "source": "/pickup.json",
+      "source": "/(.*)",
       "headers": [
         {
           "key": "Access-Control-Allow-Origin",
@@ -9,7 +9,7 @@
         },
         {
           "key": "Cache-Control",
-          "value": "public, max-age=0, must-revalidate, s-maxage=0"
+          "value": "no-store"
         }
       ]
     }
